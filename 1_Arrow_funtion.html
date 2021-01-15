@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+    <p id="p6"></p>
+    <p id="p7"></p>
+    <p id="p8"></p>
+    <p id="p9"></p>
+    <p id="p10"></p>
+    <script>
+      /*
+        روش اول
+        function myFucion(parameter){
+
+        }
+
+        روش دوم
+        const myFunction = funtion(parameter){
+
+        }
+
+        روش سوم
+        Arrow Functions
+        => (arrow)
+
+        const myFuction = (parameter) =>{
+
+        }
+      */
+
+      // با چند پارامتر
+      const sum1 = (num1, num2) => {
+        return num1 + num2;
+      };
+
+      document.getElementById('p1').innerHTML = `sum1(10, 20) = ${sum1(10, 20)}`;
+
+      //   با یک پارامتر روش اول
+      const wrapToStrong1 = (content) => {
+        return `<strong>${content}</strong>`;
+      };
+
+      document.getElementById('p2').innerHTML = wrapToStrong1(
+        'Hello Arrow Function'
+      );
+
+      //   با یک پارامتر روش دوم
+      //  حذف پرانتز درصورت وجود تنها یک پارامتر
+      const wrapToStrong2 = content => {
+        return `<strong>${content}</strong>`;
+      };
+
+      document.getElementById('p3').innerHTML = wrapToStrong2(
+        'Hello Arrow Function'
+      );
+
+      //   با یک پارامتر روش سوم
+      // زمانی که بدنه تابع تنها یک دستورالعمل دارد که آن هم فقط دستور return میباشد
+      const wrapToStrong3 = content => `<strong>${content}</strong>`;
+
+      document.getElementById('p4').innerHTML = wrapToStrong3(
+        'Hello Arrow Function'
+      );
+
+      const sum2 = (num1, num2) => num1 + num2;
+      document.getElementById('p5').innerHTML = `sum2(10, 20) = ${sum2(10, 20)}`;
+
+      // بدون پارامتر
+      const hello = () => 'Hello Arrow Function';
+      document.getElementById('p6').innerHTML = hello();
+
+
+      const person={
+          firstName: 'Amir Hosein',
+          lastName: 'Salighe Dar',
+          propmt: () => `Hello`,
+          testThisNormal: function(){
+              console.log(this);
+          },
+          testThisArrow: () => {
+              console.log(this);
+          }
+      }
+      document.getElementById('p7').innerHTML = person.propmt();
+
+      person.testThisNormal();
+      person.testThisArrow();
+    </script>
+  </body>
+</html>
