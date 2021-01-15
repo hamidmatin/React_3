@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+    <p id="p6"></p>
+    <p id="p7"></p>
+    <p id="p8"></p>
+    <p id="p9"></p>
+    <p id="p10"></p>
+
+    <script>
+      const person = [];
+
+      // Object Costructor Function
+      const Pesron_FN = function (firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = function () {
+          return `${this.firstName} ${this.lastName}`;
+        };
+      };
+
+      person.push({
+        firstName: 'Amir Hosein',
+        lastName: 'Salighe Dar',
+        fullName: function () {
+          return `${this.firstName} ${this.lastName}`;
+        },
+      });
+
+      person.push({
+        firstName: 'Amir Mehdi',
+        lastName: 'Vaez',
+        fullName: function () {
+          return `${this.firstName} ${this.lastName}`;
+        },
+      });
+
+      person.push(new Pesron_FN('Hanie', 'Abolghasemi'));
+      person.push(new Pesron_FN('Hassan', 'Beiki'));
+
+      /*********** Classes **************/
+      /*
+        class className{
+            constructor(param1, param2){....}
+            property1 = value;
+            property2 = value;
+            property3 = value;
+            method1(){...}
+            method2(){...}
+            method3(){...}
+        }
+      */
+      class Person {
+        constructor(firstName = 'Hamid', lastName = 'Matin', BOD = 1974) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.BOD = BOD;
+        }
+        fullName() {
+          return `${this.firstName} ${this.lastName}`;
+        }
+        // BOD = 1974;
+        age() {
+          let date = new Date();
+          let year = date.getFullYear();
+
+          //   return new Date().getFullYear() - this.BOD;
+          return year - this.BOD;
+        }
+      }
+
+      const p1 = new Person('Farid', 'Farahmand', 1997);
+      //   p1.BOD = 1990;
+      document.getElementById('p1').innerHTML = `BOD is ${
+        p1.BOD
+      } , and age = ${p1.age()}`;
+
+      document.getElementById('p2').innerHTML = p1.fullName();
+
+      const p2 = new Person();
+      document.getElementById('p3').innerHTML = p2.fullName();
+
+
+      /************/
+      class Course{
+          constructor(name, duration, teacher){
+              this.name = name;
+              this.duration = duration;
+              this.teacher = teacher;
+          }
+      }
+
+      class Teacher extends Person{
+        constructor(firstName, lastName, BOD){
+            super(firstName, lastName, BOD);
+        }
+      }
+      class Student extends Person{
+        constructor(firstName, lastName, BOD, course){
+            super(firstName, lastName, BOD);
+            this.course = course;
+        }
+      }
+
+      const t1 = new Teacher('Hamid', 'Matin', 1974)
+      const t2 = new Teacher('sdsd', 'Masddtin', 1974)
+      let c1 = new Course('React', 40, t1);
+      
+      const c2 = new Course('Web I', 58, t2);
+      const c3 = new Course('Web II', 34);
+      const c4 = new Course('Web III', 58);
+
+      const st1 = new Student('Nilofar', 'Omidi', 1990, c1);
+
+      document.getElementById('p4').innerHTML = `Student Name : ${st1.fullName()} <br>
+                                                 Course Name : ${st1.course.name} <br>
+                                                 Course Duration : ${st1.course.duration} <br>
+                                                 Course Teacher: ${st1.course.teacher.fullName()}
+      `;
+    </script>
+  </body>
+</html>
