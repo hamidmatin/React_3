@@ -6,4 +6,10 @@
 .student-row{
     padding: 8px 0;
     border-bottom: 1px solid #ccc;
+    transition: all .5s;
+    transform-origin: 0 0;
+}
+.hide{
+    transform: scaleY(0);
+    visibility: hidden;
 }
