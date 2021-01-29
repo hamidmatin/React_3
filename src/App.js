@@ -4,6 +4,7 @@ import './App.css';
 import MY_PROJECT_NAME, { MY_NAME } from './impoer-export-module/my-constant';
 
 import Student from './components/student/Student';
+import Lifecycle from './components/lifecycle/Lifecycle';
 
 class App extends Component {
   constructor() {
@@ -29,6 +30,7 @@ class App extends Component {
         },
       ],
       toggleShow: true,
+      message : 'React Component Lifecycle'
     };
   }
   prompt = `Teacher is : ${MY_NAME}`;
@@ -67,6 +69,12 @@ class App extends Component {
     this.setState(newState);
   };
 
+  changeMessageHandler = ()=>{
+    this.setState({
+      ...this.state,
+      message : 'New Message'
+    })
+  }
   render() {
     return (
       <div className='App'>
@@ -108,6 +116,9 @@ class App extends Component {
                 />
               ))
             : null}
+            <hr/>
+            <button className='btn btn-success mb-2' onClick={this.changeMessageHandler}>Change Message</button>
+            <Lifecycle message={this.state.message} />
           {/* <Student firstName="Amir Hossein" lastName="Salighe Dar"/>
           <Student firstName="Amir Mehdi" lastName="Vaez"/>
           <Student firstName="Hassan" lastName="Beiki"/>
