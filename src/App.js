@@ -42,12 +42,31 @@ class App extends Component {
     this.setState(newStudentList);
   };
 
-  toggleListHandler = () => {
+  toggleListHandler = (e) => {
+    console.log(e)
     const newState = { ...this.state };
     newState.toggleShow = !newState.toggleShow;
 
     this.setState(newState);
   };
+
+  testEventParameter = (message, e) => {
+    console.log(message);
+    console.log(e);
+  };
+
+  deleteStudent = (index) => {
+    console.log(index);
+
+    const newState = {
+      ...this.state
+    }
+    newState.studentList.splice(index, 1);
+
+    // console.log(newState)
+    this.setState(newState);
+  };
+
   render() {
     return (
       <div className='App'>
@@ -55,15 +74,37 @@ class App extends Component {
           <img src={logo} className='App-logo' alt='logo' />
           <h2>{MY_PROJECT_NAME}</h2>
           <p>{this.prompt}</p>
-          <button onClick={this.clickHandler}>Change Student</button>
-          <button onClick={this.toggleListHandler}>Toggle List</button>
+          <div className='btn-group'>
+            <button onClick={this.clickHandler} className='btn btn-primary'>
+              Change Student
+            </button>
+            <button onClick={this.toggleListHandler} className='btn btn-primary'>
+              Toggle List
+            </button>
+            <button
+              className='btn btn-warning'
+              onClick={(e) => {
+                this.testEventParameter('Call by func', e);
+              }}
+            >
+              Test Event with parameter
+            </button>
+            <button
+              className='btn btn-danger'
+              onClick={this.testEventParameter.bind(this, 'Call by Bind')}
+            >
+              Test Event with parameter
+            </button>
+          </div>
           <hr />
           {this.state.toggleShow
             ? this.state.studentList.map((student, index) => (
                 <Student
                   key={index}
+                  id={index}
                   firstName={student.firstName}
                   lastName={student.lastName}
+                  deleteStudentHandler={this.deleteStudent}
                 />
               ))
             : null}
