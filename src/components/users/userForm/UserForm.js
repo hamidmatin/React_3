@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 export default class UserForm extends Component {
   constructor() {
     super();
     this.state = {
-      user: {
-        id: uuidv4(),
+      user:{
+        id: '',
         name: '',
         username: '',
         email: '',
-      },
+      }
     };
   }
 
@@ -48,19 +48,28 @@ export default class UserForm extends Component {
   };
 
   saveUser = () => {
-    this.props.addNewUser(this.state.user)
-    this.setState({
-      user: {
-        id: '',
-        name: '',
-        username: '',
-        email: '',
-      }
-    })
+    this.props.updateUser(this.state.user);
+    // this.setState({
+    //   user: {
+    //     id: uuidv4(),
+    //     name: '',
+    //     username: '',
+    //     email: '',
+    //   },
+    // });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Prev Props', prevProps);
+    console.log('Props', this.props);
+
+    if (this.props.userInfo !== prevProps.userInfo)
+      this.setState({ ...this.state, user: this.props.userInfo });
+  }
+
   render() {
     return (
-      <div className='card w-75 mx-auto'>
+      <div className='card w-75 mx-auto collapse' id='user-form'>
         <div className='card-body'>
           <div className='row'>
             <div className='col-md-6'>
@@ -110,7 +119,12 @@ export default class UserForm extends Component {
           </div>
         </div>
         <div className='card-footer'>
-          <button className='btn btn-outline-success' onClick={this.saveUser}>
+          <button
+            data-bs-toggle='collapse'
+            data-bs-target='#user-form'
+            className='btn btn-outline-success'
+            onClick={() => this.props.updateUser(this.state.user)}
+          >
             Save
           </button>
         </div>

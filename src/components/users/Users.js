@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import Loading from '../loading/Loading';
 import UserForm from './userForm/UserForm';
 import UserList from './userList/UserList';
@@ -9,6 +10,7 @@ export default class Users extends Component {
     super();
     this.state = {
       userList: [],
+      userForm: {},
       isLoading: true,
     };
   }
@@ -25,7 +27,7 @@ export default class Users extends Component {
         this.setState(newState);
       });
   }
-  addNewUserHandler = (newUser) => {
+  updateUserListHandler = (newUser) => {
     console.log(newUser);
     const newState = { ...this.state };
 
@@ -34,16 +36,61 @@ export default class Users extends Component {
     });
     console.log(index);
     if (index === -1) {
+      // For Add New User
       newState.userList.push(newUser);
-      this.setState(newState);
-    } else alert('sdsds');
+    } else {
+      // Update User
+      newState.userList[index] = newUser;
+    }
+    this.setState(newState);
   };
+
+  editUserHandler = (id) => {
+    // console.log(id);
+    const findUser = this.state.userList.find((user) => user.id === id);
+
+    // console.log(findUser);
+
+    this.setState({ ...this.state, userForm: findUser });
+    // findUser.name = 'iiiiiiiiiiiiiii';
+    // console.log(this.state.userList)
+  };
+
+  addNewUser = () => {
+    const newUser = {
+      id: uuidv4(),
+      name: '',
+      username: '',
+      email: '',
+    };
+
+    console.log(newUser)
+    this.setState({ ...this.state, userForm: newUser });
+  };
+
   render() {
     return (
       <div className='mt-5'>
         {this.state.isLoading ? <Loading /> : null}
-        <UserForm addNewUser={this.addNewUserHandler} />
-        <UserList userList={this.state.userList} />
+
+        <UserForm
+          updateUser={this.updateUserListHandler}
+          userInfo={this.state.userForm}
+        />
+        <div className='container mt-4'>
+          <button
+            className='btn btn-outline-primary ms-3'
+            data-bs-toggle='collapse'
+            data-bs-target='#user-form'
+            onClick={this.addNewUser}
+          >
+            Add New User
+          </button>
+        </div>
+        <UserList
+          userList={this.state.userList}
+          editUser={this.editUserHandler}
+        />
       </div>
     );
   }

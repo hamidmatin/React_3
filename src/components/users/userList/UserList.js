@@ -7,7 +7,7 @@ export default class UserList extends Component {
     
     return (
       <div className='container d-flex flex-wrap mt-4'>
-        {this.props.userList.map(user => <User key={user.id} {...user}/>)}
+        {this.props.userList.map(user => <User key={user.id} {...user} editUser={this.props.editUser}/>)}
       </div>
     )
   }
