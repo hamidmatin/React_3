@@ -49,6 +49,11 @@ export default class Nav extends Component {
                 Products
               </NavLink>
             </li>
+            <li className='nav-item'>
+              <NavLink className='nav-link' to='/comments'>
+                Comments
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>

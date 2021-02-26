@@ -9,6 +9,7 @@ import Todos from '../../components/todos/Todos';
 import SubTodos from '../../components/todos/SubTodos';
 import Home from '../../components/home/Home';
 import Products from '../../components/products/Products';
+import Comments from '../../components/comments/Comments';
 
 export default class Layout extends Component {
   render() {
@@ -27,6 +28,7 @@ export default class Layout extends Component {
             <Route path='/todos' component={Todos} />
             <Route path='/todos/sub' component={SubTodos} />
             <Route path='/products' component={Products} />
+            <Route path='/comments' component={Comments} />
           </Switch>
         </BrowserRouter>
       </div>
