@@ -5,6 +5,14 @@ class Products extends Component {
   testhandler = () =>{
     this.props.test();
   }
+
+  addNewProduct = () =>{
+    this.props.add({
+      id: 3,
+      name: 'Product 3',
+      price: 4545646,
+    })
+  }
   render() {
     console.log('Props in Products', this.props.products);
     return (
@@ -42,8 +50,8 @@ const mapActionsToProps = (dispatch) => {
     test: () => {
       dispatch({type: 'test', value: 'Test For Action'});
     },
-    add: () => {
-      dispatch(addNewProduct())
+    add: (value) => {
+      dispatch(addNewProduct(value))
     },
     delete: () => {
       dispatch({type: 'delete', value: 1})

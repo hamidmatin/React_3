@@ -1,11 +1,8 @@
-const addNewProduct = () => {
+import { ADD_NEW_PRODOCT } from '../redux/actionTypes'
+const addNewProduct = (value) => {
   return {
-    type: 'add',
-    value: {
-      id: 3,
-      name: 'Product 3',
-      price: 4545646,
-    },
+    type: ADD_NEW_PRODOCT,
+    value: value,
   };
 };
 

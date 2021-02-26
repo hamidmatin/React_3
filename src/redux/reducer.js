@@ -1,3 +1,4 @@
+import {ADD_NEW_PRODOCT} from '../redux/actionTypes'
 const initState = {
   products: [
     {
@@ -18,7 +19,7 @@ const rootReducer = (state = initState, action) => {
   console.log('action', action);
 
   switch (action.type) {
-    case 'add':
+    case ADD_NEW_PRODOCT:
       return { products: [...state.products, action.value] };
     case 'delete':
       let newP = state.products.find((p) => p.id !== action.value);
