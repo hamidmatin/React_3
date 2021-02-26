@@ -8,12 +8,16 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducer';
 
+import BlogContextProvider from './context/BlogContext';
+
 const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BlogContextProvider>
+        <App />
+      </BlogContextProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
